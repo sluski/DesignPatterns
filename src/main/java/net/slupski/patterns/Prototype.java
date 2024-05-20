@@ -2,14 +2,11 @@ package net.slupski.patterns;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
-public class Prototype implements Consumer<Integer> {
+public class Prototype extends Pattern {
 
     @Override
-    public void accept(Integer index) {
-        Utils.printIndex(index);
-
+    void example() {
         List<Vehicle> vehicles = List.of(createCar(), createBus());
         List copies = new ArrayList<Vehicle>();
         vehicles.forEach(vehicle -> copies.add(vehicle.copy()));

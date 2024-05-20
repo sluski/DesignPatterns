@@ -3,16 +3,13 @@ package net.slupski.patterns;
 public class Patterns {
     
     public static void main(String[] args) {
-        var factoryPattern = new AbstractFactory();
-        var prototypePattern = new Prototype();
-        var builderPattern = new Builder();
-        var singletonPattern = new Singleton();
-        var chainOfResponsibility = new ChainOfResponsibility();
-        factoryPattern.accept(1);
-        prototypePattern.accept(2);
-        builderPattern.accept(3);
-        singletonPattern.accept(4);
-        chainOfResponsibility.accept(5);
+        new AbstractFactory().accept(1);
+        new Prototype().accept(2);
+        new Builder().accept(3);
+        new Singleton().accept(4);
+        new ChainOfResponsibility().accept(5);
+        new Command().accept(6);
+        new Template().accept(7);
     }
     
 }

@@ -2,39 +2,35 @@ package net.slupski.patterns;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
 
-public class ChainOfResponsibility implements Consumer<Integer>{
-
-   
+public class ChainOfResponsibility extends Pattern {
 
     @Override
-    public void accept(Integer t) {
-        Utils.printIndex(t);
-        
-         var request = new Request("incorrect", "password1");
-         var request2 = new Request("admin", "incorrect");
-         var request3 = new Request("admin", "password1");
-         
-         var authService = new AuthService();
-         
-         authService.logIn(request);
-         authService.logIn(request2);
-         authService.logIn(request3);
+    void example() {
+        var request = new Request("incorrect", "password1");
+        var request2 = new Request("admin", "incorrect");
+        var request3 = new Request("admin", "password1");
+
+        var authService = new AuthService();
+
+        authService.logIn(request);
+        authService.logIn(request2);
+        authService.logIn(request3);
     }
 }
 
 class AuthService {
+
     private BaseHandler handler;
     private Database database;
-    
+
     public AuthService() {
         database = new Database();
         handler = new UsernameHandler(database);
         handler.setNextHandler(new PasswordHandler(database));
     }
-    
-    boolean logIn(Request request){
+
+    boolean logIn(Request request) {
         return handler.handle(request);
     }
 }

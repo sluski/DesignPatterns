@@ -1,13 +1,9 @@
 package net.slupski.patterns;
 
-import java.util.function.Consumer;
-
-public class Builder implements Consumer<Integer> {
+public class Builder extends Pattern {
 
     @Override
-    public void accept(Integer t) {
-        Utils.printIndex(t);
-
+    void example() {
         var builder = new CarBuilder();
         builder
                 .setBrand("Toyota")

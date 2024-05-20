@@ -1,13 +1,10 @@
 package net.slupski.patterns;
 
-import java.util.function.Consumer;
 
-public class AbstractFactory implements Consumer<Integer> {
+public class AbstractFactory extends Pattern {
 
     @Override
-    public void accept(Integer index) {
-        Utils.printIndex(index);
-
+    void example() {
         var restaurant1 = new VegeRestaurant();
         var restaurant2 = new TexMexRestuarant();
 
