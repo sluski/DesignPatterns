@@ -1,4 +1,7 @@
-package net.slupski.patterns;
+package net.slupski;
+
+
+import net.slupski.patterns.*;
 
 public class Patterns {
     
@@ -10,6 +13,7 @@ public class Patterns {
         new ChainOfResponsibility().accept(5);
         new Command().accept(6);
         new Template().accept(7);
+        new Memento().accept(8);
     }
     
 }

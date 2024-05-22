@@ -2,34 +2,41 @@ package net.slupski.patterns;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import net.slupski.patterns.Memento.TextArea.Snapshot;
+import net.slupski.patterns.TextArea.Snapshot;
 
 public class Memento extends Pattern {
 
     @Override
     void example() {
         var editor = new Editor();
+        editor.write("");
         editor.write("This");
         editor.write("This is");
         editor.write("This is design");
-        editor.write("This is design pattern");
-        editor.read();
+        System.out.println("This is design pattern");
         
         editor.undo();
-        editor.read();
+        printText(editor);
         
         editor.undo();
-        editor.read();
+        printText(editor);
         
         editor.undo();
-        editor.read();
+        printText(editor);
         
         editor.undo();
-        editor.read();
+        printText(editor);
+        
+        editor.undo();
     }
     
+    private void printText(Editor editor) {
+        System.out.println(editor.read());
+    }
     
-    static class TextArea {
+}
+
+class TextArea {
        
         private String text;
         
@@ -67,7 +74,7 @@ public class Memento extends Pattern {
         }
     }
     
-    static class Editor {
+    class Editor {
         private Deque<Snapshot> stateHistory;
         private TextArea textArea;
         
@@ -86,8 +93,12 @@ public class Memento extends Pattern {
         }
         
         public void undo() {
-            textArea.restore(stateHistory.pop());
+            System.out.println("Undo...");
+            if(stateHistory.isEmpty()) {
+                System.out.println("Nothing to undo");
+                return;
+            }
+            textArea.restore(stateHistory.pollLast());
         }
          
     }
-}
